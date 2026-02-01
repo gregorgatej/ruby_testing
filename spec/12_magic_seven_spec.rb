@@ -70,34 +70,66 @@ describe MagicSeven do
   # Write a test for each of the following methods:
 
   describe '#subtract_four' do
+    context "when the previous step is 18" do
+      it "returns 14" do
+        previous_step = 18
+        result = game.subtract_four(previous_step)
+        expect(result).to eq(14)
+      end
+    end
   end
 
   describe '#divide_by_two' do
+    context "when the previous step is 20" do
+      it "returns 10" do
+        previous_step = 20
+        result = game.divide_by_two(previous_step)
+        expect(result).to eq(10)
+      end
+    end
   end
 
   # The following tests will need you to create new instances of MagicSeven with
   # a specific value for the random_number.
   describe '#subtract_random_number' do
+    context "when the random number is 13 and the previous step is 20" do
+      subject(:game) { described_class.new(13) }
+
+      it "will return 7" do
+        previous_step = 20
+        result = game.subtract_random_number(previous_step)
+        expect(result).to eq(7)
+      end
+    end
   end
 
   # The #play method will always return seven! Test this game, using any
   # integer as the random_number. Update the context with the number.
   describe '#play' do
-    context 'when the random number is ...' do
+    context 'when the random number is 45' do
+      subject(:game) { described_class.new(45) }
       # remove the 'x' before running this test
-      xit 'will return 7' do
+      it 'will return 7' do
+        result = game.play
+        expect(result).to eq(7)
       end
     end
 
-    context 'when the random number is ...' do
+    context 'when the random number is 909' do
+      subject(:game) { described_class.new(45) }
       # remove the 'x' before running this test
-      xit 'will return 7' do
+      it 'will return 7' do
+        result = game.play
+        expect(result).to eq(7)
       end
     end
 
-    context 'when the random number is ...' do
+    context 'when the random number is -5' do
+      subject(:game) { described_class.new(-13) }
       # remove the 'x' before running this test
-      xit 'will return 7' do
+      it 'will return 7' do
+        result = game.play
+        expect(result).to eq(7)
       end
     end
   end

@@ -116,14 +116,15 @@ describe FindNumber do
     # explained above.
 
     subject(:game_guessing) { described_class.new(0, 9, number_guessing) }
-
+    let(:number_guessing) { double('number_guessing', value: 8) }
     # Before you write the #make_guess method:
     # Write a test that would expect #make_guess to return the average of
     # the min and max values (rounded down). Don't expect this test to pass.
     # It will fail with an undefined method error because you haven't
     # written #make_guess yet!
     context 'when min is 0 and max is 9' do
-      xit 'returns 4' do
+      it 'returns 4' do
+        expect(game_guessing.make_guess).to eq(4)
       end
     end
 
@@ -136,22 +137,27 @@ describe FindNumber do
     # random number double created inside this method's describe block.
 
     context 'when min is 5 and max is 9' do
-      xit 'returns 7' do
+      subject(:game_guessing_seven) { described_class.new(5, 9, number_guessing) }
+      it 'returns 7' do
+        expect(game_guessing_seven.make_guess).to eq(7)
       end
     end
 
     context 'when min is 8 and max is 9' do
-      xit 'returns 8' do
+      subject(:game_guessing_seven) { described_class.new(8, 9, number_guessing) }
+      it 'returns 8' do
       end
     end
 
     context 'when min is 0 and max is 3' do
-      xit 'returns 1' do
+      subject(:game_guessing_seven) { described_class.new(0, 3, number_guessing) }
+      it 'returns 1' do
       end
     end
 
     context 'when min and max both equal 3' do
-      xit 'returns 3' do
+      subject(:game_guessing_seven) { described_class.new(3, 3, number_guessing) }
+      it 'returns 3' do
       end
     end
   end

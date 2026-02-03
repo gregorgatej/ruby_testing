@@ -146,18 +146,21 @@ describe FindNumber do
     context 'when min is 8 and max is 9' do
       subject(:game_guessing_seven) { described_class.new(8, 9, number_guessing) }
       it 'returns 8' do
+        expect(game_guessing_seven.make_guess).to eq(8)
       end
     end
 
     context 'when min is 0 and max is 3' do
       subject(:game_guessing_seven) { described_class.new(0, 3, number_guessing) }
       it 'returns 1' do
+        expect(game_guessing_seven.make_guess).to eq(1)
       end
     end
 
     context 'when min and max both equal 3' do
       subject(:game_guessing_seven) { described_class.new(3, 3, number_guessing) }
       it 'returns 3' do
+        expect(game_guessing_seven.make_guess).to eq(3)
       end
     end
   end
@@ -173,8 +176,11 @@ describe FindNumber do
       # Write a test that would expect game to be_game_over when a guess equals
       # the random_number double's value above. Remember that this test will not
       # be able to pass yet because you haven't written the method!
+      let(:winning_number) { double('winning_number', value: 5) }
+      subject(:winning_game) { described_class.new(0, 9, winning_number, 5) }
 
-      xit 'is game over' do
+      it 'is game over' do
+        expect(winning_game).to be_game_over
       end
     end
 
@@ -185,7 +191,10 @@ describe FindNumber do
     # NOT equal the random_number double's value above.
 
     context 'when guess and random_number are not equal' do
-      xit 'is not game over' do
+      let(:answer) { double('answer', value: 4) }
+      subject(:loosing_game) { described_class.new(0, 9, answer, 7) }
+      it 'is not game over' do
+        expect(loosing_game).not_to be_game_over
       end
     end
   end
@@ -209,20 +218,24 @@ describe FindNumber do
     context 'when the guess is less than the answer' do
       subject(:low_guess_game) { described_class.new(0, 9, number_range, 4) }
 
-      xit 'updates min to 5' do
+      it 'updates min to 5' do
+        expect { low_guess_game.update_range }.to change { low_guess_game.min }.to(5)
       end
 
-      xit 'does not update max' do
+      it 'does not update max' do
+        expect { low_guess_game.update_range }.not_to(change { low_guess_game.max })
       end
     end
 
     context 'when the guess is more than the answer' do
       subject(:high_guess_game) { described_class.new(0, 9, number_range, 9) }
 
-      xit 'does not update min' do
+      it 'does not update min' do
+        expect { high_guess_game.update_range }.not_to(change { high_guess_game.min })
       end
 
-      xit 'updates max to 8' do
+      it 'updates max to 8' do
+        expect { high_guess_game.update_range }.to change { high_guess_game.max }.by(-1)
       end
     end
 
